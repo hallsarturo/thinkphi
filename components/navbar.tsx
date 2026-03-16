@@ -11,6 +11,7 @@ import {
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
 import { ModeToggle } from '@/components/mode-toggle';
+import { LogIn } from '@/components/log-in/log-in';
 import { useState } from 'react';
 
 const navigation = [
@@ -141,20 +142,14 @@ export default function NavBar() {
                             </Menu>
                         </div>
                     )}
+                    <div className="mr-6">
+                        <ModeToggle />
+                    </div>
+
                     {!isLoggedIn && (
                         <div className="py-6">
-                            <a
-                                href="#"
-                                className="text-sm font-semibold text-gray-900 dark:text-white"
-                            >
-                                Log in{' '}
-                                <span
-                                    aria-hidden="true"
-                                    className="text-gray-900 dark:text-white"
-                                >
-                                    &rarr;
-                                </span>
-                            </a>
+                            <LogIn />
+                            
                         </div>
                     )}
                 </div>
