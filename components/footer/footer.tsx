@@ -1,7 +1,7 @@
 type NavigationItem = {
     name: string;
     href: string;
-    icon: (props: React.SVGProps<SVGSVGElement>) => JSX.Element;
+    icon: (props: React.SVGProps<SVGSVGElement>) => React.ReactElement;
 };
 
 const navigation: NavigationItem[] = [
