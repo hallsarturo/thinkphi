@@ -145,9 +145,15 @@ export default function NavBar() {
                         <div className="py-6">
                             <a
                                 href="#"
-                                className="-mx-3 block rounded-lg px-3 py-2.5 text-sm font-semibold text-gray-900 hover:bg-gray-100 dark:text-white dark:hover:bg-white/10"
+                                className="text-sm font-semibold text-gray-900 dark:text-white"
                             >
-                                Log in
+                                Log in{' '}
+                                <span
+                                    aria-hidden="true"
+                                    className="text-gray-900 dark:text-white"
+                                >
+                                    &rarr;
+                                </span>
                             </a>
                         </div>
                     )}

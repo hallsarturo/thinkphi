@@ -2,6 +2,7 @@ import type { Metadata } from 'next';
 import { Inter } from 'next/font/google';
 import { ThemeProvider } from '@/components/theme-provider';
 import NavBar from '@/components/navbar';
+import Footer from '@/components/footer/footer';
 import './globals.css';
 
 const inter = Inter({
@@ -33,6 +34,7 @@ export default function RootLayout({
                 >
                     <NavBar />
                     {children}
+                    <Footer />
                 </ThemeProvider>
             </body>
         </html>
