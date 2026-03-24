@@ -8,20 +8,42 @@ import Image from 'next/image';
 export function SignUp() {
     const router = useRouter();
     const [error, setError] = useState<string | null>(null);
+    const [isLoading, setIsLoading] = useState(false);
 
     async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
         e.preventDefault();
         setError(null);
         const formData = new FormData(e.currentTarget);
-        const res = await authClient.signUp.email({
-            name: formData.get('name') as string,
-            email: formData.get('email') as string,
-            password: formData.get('password') as string,
-        });
-        if (res.error) {
-            setError(res.error.message || 'Something went wrong.');
-        } else {
-            router.push('/dashboard');
+        try {
+            const res = await authClient.signUp.email(
+                {
+                    name: formData.get('name') as string,
+                    email: formData.get('email') as string,
+                    password: formData.get('password') as string,
+                    callbackURL: '/dashboard',
+                },
+                {
+                    onRequest: () => {
+                        setIsLoading(true);
+                    },
+                    onSuccess: () => {
+                        setIsLoading(false);
+                        router.push('/dashboard');
+                    },
+                    onError: (ctx) => {
+                        setIsLoading(false);
+                        alert(ctx.error.message);
+                    },
+                }
+            );
+
+            console.log(res);
+        } catch (err: unknown) {
+            if (err instanceof Error) {
+                setError(err.message);
+            } else {
+                setError('Something went wrong.');
+            }
         }
     }
 
@@ -178,6 +200,7 @@ export function SignUp() {
                                 >
                                     Sign in
                                 </button>
+                                {isLoading && <p>Loading... please wait</p>}
                             </div>
                         </form>
 
