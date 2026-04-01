@@ -1,11 +1,10 @@
 {
     "name": "thinkphi",
     "version": "0.1.0",
-    "type": "module",
     "private": true,
     "scripts": {
         "prisma:generate": "prisma generate",
-        "dev": "next dev",
+        "dev": "next dev --webpack",
         "build": "npm run prisma:generate && next build",
         "start": "next start",
         "lint": "eslint"
