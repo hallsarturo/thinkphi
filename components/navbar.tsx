@@ -15,10 +15,11 @@ import { LogIn } from '@/components/log-in/log-in';
 import Image from 'next/image';
 import { authClient } from '@/lib/auth-client';
 import { useRouter } from 'next/navigation';
+import Link from 'next/link';
 
 const navigation = [
     { name: 'How it works', href: '#', current: false },
-    { name: 'Topics', href: '#', current: false },
+    { name: 'Topics', href: '/topics', current: false },
     { name: 'Leaderboard', href: '#', current: false },
     { name: 'About', href: '#', current: false },
 ];
@@ -83,7 +84,7 @@ export default function NavBar() {
                         <div className="hidden sm:ml-6 sm:block">
                             <div className="flex space-x-4">
                                 {navigation.map((item) => (
-                                    <a
+                                    <Link
                                         key={item.name}
                                         href={item.href}
                                         aria-current={
@@ -97,7 +98,7 @@ export default function NavBar() {
                                         )}
                                     >
                                         {item.name}
-                                    </a>
+                                    </Link>
                                 ))}
                             </div>
                         </div>
