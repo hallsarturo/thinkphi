@@ -10,7 +10,8 @@ import {
     MenuItems,
 } from '@headlessui/react';
 import { Bars3Icon, BellIcon, XMarkIcon } from '@heroicons/react/24/outline';
-import { ModeToggle } from '@/components/mode-toggle';
+import { ModeToggle } from '@/components/navbar/mode-toggle';
+import LanguageSelector from '@/components/navbar/language-selector';
 import { LogIn } from '@/components/log-in/log-in';
 import Image from 'next/image';
 import { authClient } from '@/lib/auth-client';
@@ -103,8 +104,10 @@ export default function NavBar() {
                             </div>
                         </div>
                     </div>
-                    <div className="mr-3">
+                    {/* Theme Toggle & Language Selection */}
+                    <div className="flex items-center gap-2 mr-3">
                         <ModeToggle />
+                        <LanguageSelector />
                     </div>
                     {session && (
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
