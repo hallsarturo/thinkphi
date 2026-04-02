@@ -79,6 +79,7 @@ export default function NavBar() {
                                 width={350}
                                 height={350}
                                 src="https://tailwindcss.com/plus-assets/img/logos/mark.svg?color=indigo&shade=500"
+                                loading="eager"
                                 className="h-8 w-auto"
                             />
                         </div>
