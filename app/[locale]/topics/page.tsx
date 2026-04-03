@@ -56,7 +56,7 @@ export default function TopicsPage() {
             <div className="flex flex-col mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8 gap-8">
                 <div className="border-b border-gray-200 pb-5 dark:border-white/10">
                     <h3 className="text-base font-semibold text-gray-900 dark:text-white">
-                        Topics {t('title')}
+                        {t('title')}
                     </h3>
                 </div>
 
