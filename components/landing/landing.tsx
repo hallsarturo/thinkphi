@@ -8,7 +8,7 @@ const navigation = [
     { name: 'About', href: '#' },
 ];
 
-export default function Example() {
+export default function Landing() {
     return (
         <div className="min-h-screen bg-white dark:bg-gray-900">
             <main>
@@ -63,7 +63,7 @@ export default function Example() {
                             <div className="mx-auto max-w-2xl gap-x-14 lg:mx-0 lg:flex lg:max-w-none lg:items-center">
                                 <div className="relative w-full lg:max-w-xl lg:shrink-0 xl:max-w-2xl">
                                     <h1 className="text-5xl font-semibold tracking-tight text-pretty text-gray-900 sm:text-7xl dark:text-white">
-                                        Learn philosophy in an interactive ways
+                                        Learn philosophy in an interactive way
                                     </h1>
                                     <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:max-w-md sm:text-xl/8 lg:max-w-none dark:text-gray-400">
                                         Master epistemology and Bayesian
