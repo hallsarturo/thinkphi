@@ -10,9 +10,10 @@ export default defineConfig({
     },
     datasource: {
         url:
-            process.env['DATABASE_URL'] ||
+            // TODO: check if this has to be changed to pooling/accelerate
+            process.env['DIRECT_DATABASE_URL'] ||
             (() => {
-                throw new Error('DATABASE_URL is not set');
+                throw new Error('DIRECT_DATABASE_URL is not set');
             })(),
     },
 });
