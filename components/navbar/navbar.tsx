@@ -121,7 +121,7 @@ export default function NavBar() {
                         <div className="absolute inset-y-0 right-0 flex items-center pr-2 sm:static sm:inset-auto sm:ml-6 sm:pr-0">
                             <button
                                 type="button"
-                                className="relative rounded-full p-1 text-gray-900 hover:bg-gray-100 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 dark:text-white dark:hover:bg-white/10 dark:hover:text-white"
+                                className="relative rounded-full p-1 text-gray-900 hover:bg-gray-100 focus:outline-2 focus:outline-offset-2 focus:outline-indigo-500 dark:text-white dark:hover:bg-white/10 dark:hover:text-white cursor-pointer"
                             >
                                 <span className="absolute -inset-1.5" />
                                 <span className="sr-only">
@@ -135,7 +135,7 @@ export default function NavBar() {
 
                             {/* Profile dropdown */}
                             <Menu as="div" className="relative mx-3">
-                                <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500">
+                                <MenuButton className="relative flex rounded-full focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-500 cursor-pointer">
                                     <span className="absolute -inset-1.5" />
                                     <span className="sr-only">
                                         Open user menu
@@ -144,6 +144,7 @@ export default function NavBar() {
                                         alt=""
                                         width={350}
                                         height={350}
+                                        loading="eager"
                                         src={
                                             session.user.image ||
                                             'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=256&h=256&q=80'
@@ -162,12 +163,12 @@ export default function NavBar() {
                                         </div>
                                     </MenuItem>
                                     <MenuItem>
-                                        <a
-                                            href="#"
+                                        <Link
+                                            href={`/profile/${session.user.id}`}
                                             className="block px-4 py-2 text-sm text-gray-900 data-focus:bg-gray-100 data-focus:outline-hidden dark:text-white dark:data-focus:bg-white/10"
                                         >
                                             Your profile
-                                        </a>
+                                        </Link>
                                     </MenuItem>
                                     <MenuItem>
                                         <a
