@@ -25,7 +25,7 @@ import Link from 'next/link';
 
 const navigation = [
     { name: 'How it works', href: '#', current: false },
-    { name: 'Topics', href: '/topics', current: false },
+    { name: 'Courses', href: '/courses', current: false },
     { name: 'Leaderboard', href: '#', current: false },
     { name: 'About', href: '#', current: false },
 ];
