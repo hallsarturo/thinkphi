@@ -9,13 +9,19 @@ export default function middleware(request: NextRequest) {
     // Run Next-Intl middleware
     const response = intlMiddleware(request);
 
-    // Optimistic secure proxing (better-auth, next.js)
+    // Optimistic secure proxing (better-auth)
 
     // Protected paths
-    const protectedPaths = ['/payment'];
+    const protectedPaths = ['payment'];
     const { pathname } = request.nextUrl;
+    const localeMatch = pathname.match(/^\/[a-z]{2}(\/.*)/);
+    const normalizedPath = localeMatch ? localeMatch[1] : pathname;
 
-    if (protectedPaths.some((path) => pathname.startsWith(path))) {
+    const isProtected = protectedPaths.some((protectedPath) =>
+        normalizedPath.startsWith(`/${protectedPath}`)
+    );
+
+    if (isProtected) {
         // Check for the session cookie
         const session = request.cookies.get('better-auth.session_token');
         if (!session) {
