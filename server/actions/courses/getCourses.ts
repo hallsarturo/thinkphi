@@ -4,8 +4,13 @@ import prisma from '@/lib/prisma';
 
 export async function getCourses() {
     try {
-        const result = prisma.course.findMany();
+        const result = prisma.course.findMany({
+            include: {
+                lessons: true,
+            },
+        });
         console.log(result);
+
         return result;
     } catch (err) {
         console.error('getCourses error: ', err);

@@ -96,7 +96,14 @@ export default function CoursesPage() {
                             className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-sm dark:divide-white/10 dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10"
                         >
                             <div className="flex justify-between align-middle font-semibold px-4 py-5 sm:px-6">
-                                {course.title}
+                                <div className="flex gap-4">
+                                    {course.title}
+                                    <div>
+                                        <p className="mt-0.5 rounded-md bg-yellow-50 px-1.5 py-0.5 text-xs text-yellow-800 inset-ring inset-ring-yellow-600/20">
+                                            {course.difficulty}
+                                        </p>
+                                    </div>
+                                </div>
                                 <button
                                     type="button"
                                     className="rounded-full bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
@@ -109,44 +116,44 @@ export default function CoursesPage() {
                                     role="list"
                                     className="divide-y divide-gray-100"
                                 >
-                                    {projects.map((project) => (
+                                    {course.lessons.map((lesson) => (
                                         <li
-                                            key={project.id}
+                                            key={lesson.id}
                                             className="flex items-center justify-between gap-x-6 py-5"
                                         >
                                             <div className="min-w-0">
                                                 <div className="flex items-start gap-x-3">
                                                     <p className="text-sm/6 font-semibold text-gray-900">
-                                                        {project.name}
+                                                        {lesson.title}
                                                     </p>
                                                 </div>
                                                 <div className="mt-1 flex items-center gap-x-2 text-xs/5 text-gray-500">
                                                     <p className="whitespace-nowrap">
-                                                        Description
+                                                        description
                                                     </p>
                                                 </div>
                                             </div>
                                             <div className="flex flex-none items-center gap-x-4">
-                                                {project.status ===
+                                                {lesson.status ===
                                                 'In progress' ? (
                                                     <p className="mt-0.5 rounded-md bg-gray-50 px-1.5 py-0.5 text-xs font-medium text-gray-600 inset-ring inset-ring-gray-500/10">
-                                                        {project.status}
+                                                        {lesson.status}
                                                     </p>
                                                 ) : null}
-                                                {project.status ===
+                                                {lesson.status ===
                                                 'Complete' ? (
                                                     <p className="mt-0.5 rounded-md bg-green-50 px-1.5 py-0.5 text-xs font-medium text-green-700 inset-ring inset-ring-green-600/20">
-                                                        {project.status}
+                                                        {lesson.status}
                                                     </p>
                                                 ) : null}
-                                                {project.status ===
+                                                {lesson.status ===
                                                 'Archived' ? (
                                                     <p className="mt-0.5 rounded-md bg-yellow-50 px-1.5 py-0.5 text-xs font-medium text-yellow-800 inset-ring inset-ring-yellow-600/20">
-                                                        {project.status}
+                                                        {lesson.status}
                                                     </p>
                                                 ) : null}
                                                 <a
-                                                    href={project.href}
+                                                    href={lesson.href}
                                                     className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 sm:block"
                                                 >
                                                     {/* TODO: implement course status in backend */}
@@ -157,7 +164,7 @@ export default function CoursesPage() {
                                                         'go'
                                                     )}
                                                     <span className="sr-only">
-                                                        , {project.name}
+                                                        , {lesson.title}
                                                     </span>
                                                 </a>
                                                 <Menu
@@ -187,7 +194,7 @@ export default function CoursesPage() {
                                                                 <span className="sr-only">
                                                                     ,{' '}
                                                                     {
-                                                                        project.name
+                                                                        lesson.title
                                                                     }
                                                                 </span>
                                                             </a>
@@ -201,7 +208,7 @@ export default function CoursesPage() {
                                                                 <span className="sr-only">
                                                                     ,{' '}
                                                                     {
-                                                                        project.name
+                                                                        lesson.title
                                                                     }
                                                                 </span>
                                                             </a>
@@ -215,7 +222,7 @@ export default function CoursesPage() {
                                                                 <span className="sr-only">
                                                                     ,{' '}
                                                                     {
-                                                                        project.name
+                                                                        lesson.title
                                                                     }
                                                                 </span>
                                                             </a>
