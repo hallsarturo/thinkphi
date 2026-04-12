@@ -196,6 +196,8 @@ model Lesson {
   xpReward     Int          @default(20)
   durationMins Int?
   completions  UserLesson[]
+  prerequisites Lesson[]   @relation("LessonPrerequisites")
+  requiredBy    Lesson[]   @relation("LessonPrerequisites")
   createdAt    DateTime     @default(now())
   updatedAt    DateTime     @updatedAt
 

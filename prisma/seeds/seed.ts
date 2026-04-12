@@ -11,14 +11,29 @@ const prisma = new PrismaClient({ adapter });
 
 async function main() {
     for (const course of courses) {
-        await prisma.course.create({
+        const created = await prisma.course.create({
             data: {
                 ...course,
                 lessons: {
                     create: course.lessons,
                 },
             },
+            include: {
+                lessons: {
+                    orderBy: { order: 'asc' },
+                },
+            },
         });
+        for (let i = 1; i < created.lessons.length; i++) {
+            await prisma.lesson.update({
+                where: { id: created.lessons[i].id },
+                data: {
+                    prerequisites: {
+                        connect: { id: created.lessons[i - 1].id },
+                    },
+                },
+            });
+        }
     }
 }
 main()

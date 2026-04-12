@@ -1,6 +1,6 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import { getCourses } from git ;
+import { getCourses } from '@/server/actions/courses/getCourses';
 import { Prisma } from '@/lib/generated/prisma/client';
 import { LessonButton, CourseButton } from '@/components/courses/Buttons';
 
@@ -10,7 +10,6 @@ export type CourseWithLessons = Prisma.CourseGetPayload<{
 
 export default async function CoursesList({ userId }: { userId?: string }) {
     const courses: CourseWithLessons[] = await getCourses(userId);
-
     const difficultyStyles: Record<string, string> = {
         beginner:
             'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20',

@@ -15,7 +15,6 @@ export async function getCourses(userId?: string) {
                 enrollments: userId ? { where: { userId } } : false,
             },
         });
-
         return result;
     } catch (err) {
         console.error('getCourses error: ', err);
@@ -23,7 +22,4 @@ export async function getCourses(userId?: string) {
     }
 }
 
-export async function getLessonsByCourseId(courseId: string) {
-    
-
-}
+export async function getLessonsByCourseId(courseId: string) {}
