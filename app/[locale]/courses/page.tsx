@@ -78,6 +78,13 @@ export default function CoursesPage() {
             .catch(() => setCoursesError('Network error'));
     }, []);
 
+    const difficultyStyles: Record<string, string> = {
+        beginner:
+            'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20',
+        medium: 'bg-yellow-50 text-yellow-800 inset-ring inset-ring-yellow-600/20',
+        hard: 'bg-red-50 text-red-700 inset-ring inset-ring-red-600/20',
+    };
+
     return (
         <div className="min-h-screen overflow-hidden bg-white py-12 sm:py-6 dark:bg-gray-900">
             <div className="flex flex-col mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8 gap-8">
@@ -96,7 +103,9 @@ export default function CoursesPage() {
                                 <div className="flex gap-4">
                                     {course.title}
                                     <div>
-                                        <p className="mt-0.5 rounded-md bg-yellow-50 px-1.5 py-0.5 text-xs text-yellow-800 inset-ring inset-ring-yellow-600/20">
+                                        <p
+                                            className={`mt-0.5 rounded-md px-1.5 py-0.5 text-xs ${difficultyStyles[course.difficulty.toLowerCase()] || 'bg-gray-100 text-gray-800'}`}
+                                        >
                                             {course.difficulty}
                                         </p>
                                     </div>
@@ -151,7 +160,7 @@ export default function CoursesPage() {
                                                 ) : null}
                                                 <a
                                                     href={lesson.href}
-                                                    className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 sm:block"
+                                                    className="hidden rounded-md bg-white px-2.5 py-1.5 text-sm font-semibold text-gray-900 shadow-xs inset-ring inset-ring-gray-300 hover:bg-gray-50 sm:block cursor-pointer"
                                                 >
                                                     {/* TODO: implement course status in backend */}
 
