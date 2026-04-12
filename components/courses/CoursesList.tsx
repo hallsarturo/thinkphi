@@ -1,18 +1,16 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 import LessonButton from '@/components/courses/LessonButton';
-
+import { getCourses } from '@/server/actions/courses/getCourses';
 import { Prisma } from '@/lib/generated/prisma/client';
 
 export type CourseWithLessons = Prisma.CourseGetPayload<{
     include: { lessons: true };
 }>;
 
-export default function CoursesList({
-    courses,
-}: {
-    courses: CourseWithLessons[];
-}) {
+export default async function CoursesList({ userId }: { userId?: string }) {
+    const courses: CourseWithLessons[] = await getCourses(userId);
+
     const difficultyStyles: Record<string, string> = {
         beginner:
             'bg-green-50 text-green-700 inset-ring inset-ring-green-600/20',

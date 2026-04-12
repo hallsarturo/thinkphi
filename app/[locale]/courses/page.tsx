@@ -2,15 +2,12 @@ import { auth } from '@/lib/auth';
 import { headers } from 'next/headers';
 import { useTranslations } from 'next-intl';
 import { Suspense } from 'react';
-import { getCourses } from '@/server/actions/courses/getCourses';
 import CoursesList from '@/components/courses/CoursesList';
-
 
 export default async function CoursesPage() {
     // const t = useTranslations('CoursesPage');
     const session = await auth.api.getSession({ headers: await headers() });
-    const courses = await getCourses(session?.user?.id);
-    
+
     return (
         <div className="min-h-screen overflow-hidden bg-white py-12 sm:py-6 dark:bg-gray-900">
             <div className="flex flex-col mx-auto max-w-2xl px-6 lg:max-w-7xl lg:px-8 gap-8">
@@ -20,7 +17,7 @@ export default async function CoursesPage() {
                     </h3>
                 </div>
                 <Suspense fallback={<div>Loading...</div>}>
-                    <CoursesList courses={courses} />
+                    <CoursesList userId={session?.user?.id} />
                 </Suspense>
             </div>
         </div>
