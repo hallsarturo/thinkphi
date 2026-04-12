@@ -190,6 +190,7 @@ model Lesson {
   courseId     String
   course       Course       @relation(fields: [courseId], references: [id], onDelete: Cascade)
   title        String
+  slug         String       @unique
   content      String       // markdown or rich text
   order        Int
   xpReward     Int          @default(20)

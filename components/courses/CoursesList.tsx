@@ -1,8 +1,8 @@
 import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
-import LessonButton from '@/components/courses/LessonButton';
 import { getCourses } from '@/server/actions/courses/getCourses';
 import { Prisma } from '@/lib/generated/prisma/client';
+import { LessonButton, CourseButton } from '@/components/courses/Buttons';
 
 export type CourseWithLessons = Prisma.CourseGetPayload<{
     include: { lessons: true };
@@ -37,12 +37,7 @@ export default async function CoursesList({ userId }: { userId?: string }) {
                             </div>
                             <p className="text-xs">{course.xpReward} xp</p>
                         </div>
-                        <button
-                            type="button"
-                            className="rounded-full bg-indigo-600 px-3.5 py-2 text-sm font-semibold text-white shadow-xs hover:bg-indigo-500 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600 cursor-pointer"
-                        >
-                            Start course
-                        </button>
+                        <CourseButton courseSlug={course.slug} />
                     </div>
                     <div className="px-4 py-5 sm:p-6">
                         <ul role="list" className="divide-y divide-gray-100">
@@ -80,7 +75,10 @@ export default async function CoursesList({ userId }: { userId?: string }) {
                                             </p>
                                         ) : null}
 
-                                        <LessonButton lesson={lesson} />
+                                        <LessonButton
+                                            course={course.slug}
+                                            lesson={lesson}
+                                        />
 
                                         <Menu
                                             as="div"
