@@ -30,6 +30,9 @@ async function main() {
             },
         });
         for (let i = 1; i < created.lessons.length; i++) {
+            console.log(
+                `Linking lesson "${created.lessons[i].title}" -> "${created.lessons[i - 1].title}"`
+            );
             await prisma.lesson.update({
                 where: { id: created.lessons[i].id },
                 data: {
