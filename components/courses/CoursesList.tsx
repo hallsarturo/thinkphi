@@ -2,7 +2,11 @@ import { Menu, MenuButton, MenuItem, MenuItems } from '@headlessui/react';
 import { EllipsisVerticalIcon } from '@heroicons/react/20/solid';
 import { getCourses } from '@/server/actions/courses/getCourses';
 import { Prisma } from '@/lib/generated/prisma/client';
-import { LessonButton, CourseButton } from '@/components/courses/Buttons';
+import {
+    LessonButton,
+    CourseButton,
+    PreviewCourseButton,
+} from '@/components/courses/Buttons';
 
 export type CourseWithLessons = Prisma.CourseGetPayload<{
     include: {
@@ -25,18 +29,22 @@ export default async function CoursesList({ userId }: { userId?: string }) {
         hard: 'bg-red-50 text-red-700 inset-ring inset-ring-red-600/20',
     };
 
-    const lessonsById: Record<string, CourseWithLessons['lessons'][number]> = {}
-    courses.forEach(course => {
+    const lessonsById: Record<string, CourseWithLessons['lessons'][number]> =
+        {};
+    courses.forEach((course) => {
         course.lessons.forEach((lesson) => {
-            lessonsById[lesson.id] = lesson
-        })
-    })
+            lessonsById[lesson.id] = lesson;
+        });
+    });
 
     function isLessonDone(lesson: CourseWithLessons['lessons'][number]) {
         return lesson.completions && lesson.completions.length > 0;
     }
 
-    function isLessonUnlocked(lesson: CourseWithLessons['lessons'][number], lessonsById: Record<string, CourseWithLessons['lessons'][number]>) {
+    function isLessonUnlocked(
+        lesson: CourseWithLessons['lessons'][number],
+        lessonsById: Record<string, CourseWithLessons['lessons'][number]>
+    ) {
         if (!lesson.prerequisites || lesson.prerequisites.length === 0)
             return true;
         return lesson.prerequisites.every(
@@ -63,7 +71,10 @@ export default async function CoursesList({ userId }: { userId?: string }) {
                             </div>
                             <p className="text-xs">{course.xpReward} xp</p>
                         </div>
-                        <CourseButton courseSlug={course.slug} />
+                        <div className="flex items-center gap-4">
+                            <PreviewCourseButton courseSlug={course.slug} />
+                            <CourseButton courseSlug={course.slug} />
+                        </div>
                     </div>
                     <div className="px-4 py-5 sm:p-6">
                         <ul role="list" className="divide-y divide-gray-100">
