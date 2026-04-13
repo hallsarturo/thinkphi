@@ -1,5 +1,5 @@
-import Paralax from '@/components/courses/landing/Paralax';
+import Parallax from '@/components/courses/landing/Parallax';
 
 export default async function CourseLanding() {
-    return <Paralax />;
+    return <Parallax />;
 }

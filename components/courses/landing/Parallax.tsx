@@ -4,7 +4,7 @@ import { motion } from 'motion/react';
 import Image from 'next/image';
 
 
-export default function Paralax() {
+export default function Parallax() {
     
     return (
         <div className="min-h-screen bg-white py-24 sm:py-32 dark:bg-gray-900">
