@@ -50,20 +50,25 @@ export default function Parallax() {
     const dummyMapY = useTransform(scrollY, [0, 1000], [0, -600]); // fastest
 
     return (
-        <div className="min-h-screen bg-white py-24 sm:py-32 dark:bg-gray-900">
+        <div className="min-h-screen bg-white py-6 sm:py-8 dark:bg-gray-900">
             <div id="bg-image" className="mx-auto max-w-7xl px-6 lg:px-8 bg-[]">
                 <motion.div
                     id="bg-image"
                     style={{ ...style, y: backgroundY }}
                     className="bg-scroll bg-no-repeat"
                 >
-                    <div className="flex flex-col w-full justify-center">
+                    <div className="flex flex-col w-full justify-center px-16 py-16">
                         <motion.div
-                            className="mx-auto max-w-2xl lg:mx-0"
+                            className="mx-auto max-w-4xl px-16 py-8 lg:mx-0 backdrop-blur-xl rounded-xl"
                             style={{ y: textY }}
                         >
                             <h2 className="text-5xl font-semibold tracking-tight text-gray-900 sm:text-7xl dark:text-white">
-                                Pseudo-Science Demarcation 1
+                                Ps
+                                <span className="text-white">
+                                    eudo-Science{' '}
+                                </span>
+                                de
+                                <span className="text-white">marcation 1</span>
                             </h2>
                             <p className="mt-8 text-lg font-medium text-pretty text-gray-500 sm:text-xl/8 dark:text-gray-400">
                                 Anim aute id magna aliqua ad ad non deserunt
