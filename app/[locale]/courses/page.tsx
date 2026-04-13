@@ -16,7 +16,7 @@ export default async function CoursesPage() {
                         {t('title')}
                     </h3>
                 </div>
-                <Suspense fallback={<div>Loading...</div>}>
+                <Suspense>
                     <CoursesList userId={session?.user?.id} />
                 </Suspense>
             </div>
