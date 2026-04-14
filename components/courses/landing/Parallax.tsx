@@ -8,23 +8,22 @@ type ParallaxProps = {
     courseData: CourseRecord;
 };
 
-function getBackgroundImage(srcSet = '') {
-    const imageSet = srcSet
-        .split(', ')
-        .map((str) => {
-            const [url, dpi] = str.split(' ');
-            return `url("${url}") ${dpi}`;
-        })
-        .join(', ');
-    return `image-set(${imageSet})`;
-}
-
 export default function Parallax({ courseData }: ParallaxProps) {
+    function getBackgroundImage(srcSet = '') {
+        const imageSet = srcSet
+            .split(', ')
+            .map((str) => {
+                const [url, dpi] = str.split(' ');
+                return `url("${url}") ${dpi}`;
+            })
+            .join(', ');
+        return `image-set(${imageSet})`;
+    }
     // setting image
     const {
         props: { srcSet },
     } = getImageProps({
-        src: '/courses/landing/pexels-marcus-lenk-3854713-11119786.jpg',
+        src: `/courses/landing/${courseData?.imageUrl}`,
         width: 3456,
         height: 4320,
         alt: 'background picture',

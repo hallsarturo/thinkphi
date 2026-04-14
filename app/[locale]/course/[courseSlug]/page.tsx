@@ -12,8 +12,6 @@ export default async function CourseLandingPage({
 }) {
     const resolvedParams = await params;
     const slug = resolvedParams.courseSlug;
-    console.log('params: ', params);
-    console.log('slug: ', slug);
     // session
     const session = await auth.api.getSession({
         headers: await headers(),
