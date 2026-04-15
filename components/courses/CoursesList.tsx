@@ -48,23 +48,34 @@ export default async function CoursesList({ userId }: { userId?: string }) {
                     key={course.id}
                     className="divide-y divide-gray-200 overflow-hidden rounded-lg bg-white shadow-sm dark:divide-white/10 dark:bg-gray-800/50 dark:shadow-none dark:outline dark:-outline-offset-1 dark:outline-white/10"
                 >
-                    <div className="flex justify-between align-middle font-semibold px-4 py-5 sm:px-6">
-                        <div className="flex items-center gap-4">
-                            {course.title}
-                            <div>
+                    {/* Card Titles */}
+                    <div className="flex flex-col sm:flex-row justify-between align-middle font-semibold px-4 py-5 sm:px-6 gap-2">
+                        {/* Left group: title, difficulty, xp */}
+                        <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-4">
+                            <span className="text-base sm:text-lg">
+                                {course.title}
+                            </span>
+                            <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-2">
                                 <p
-                                    className={`mt-0.5 rounded-md px-1.5 py-0.5 text-xs ${difficultyStyles[course.difficulty.toLowerCase()] || 'bg-gray-100 text-gray-800'}`}
+                                    className={`self-start rounded-md px-1 py-0.5 text-[10px] sm:text-xs ${difficultyStyles[course.difficulty.toLowerCase()] || 'bg-gray-100 text-gray-800'}`}
                                 >
                                     {course.difficulty}
                                 </p>
+                                <p className="text-[10px] sm:text-xs">
+                                    {course.xpReward} xp
+                                </p>
                             </div>
-                            <p className="text-xs">{course.xpReward} xp</p>
                         </div>
-                        <div className="flex items-center gap-4">
-                            <PreviewCourseButton courseSlug={course.slug} />
-                            <CourseButton courseSlug={course.slug} />
+                        {/* Right group: Preview and Course buttons */}
+                        <div className="flex flex-row justify-end sm:flex-row items-end sm:items-center gap-2 sm:gap-4">
+                            <PreviewCourseButton
+                                courseSlug={course.slug}
+                                size="sm"
+                            />
+                            <CourseButton courseSlug={course.slug} size="sm" />
                         </div>
                     </div>
+                    {/* Card Content */}
                     <div className="px-4 py-5 sm:p-6">
                         <ul role="list" className="divide-y divide-gray-100">
                             {course.lessons.map((lesson) => (
